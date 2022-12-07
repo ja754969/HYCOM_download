@@ -17,8 +17,7 @@ first_date_download_num = datenum(first_date_download)-data_sources_base_date_nu
 last_date_download_num = datenum(datetime(2021,01,03));
 %%
 % t = 7907; %起始時間index
-t = 0; %起始時間index
-% while t <=10968 
+t = 7758; %起始時間index
 while t <=3
     %https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z?lat[0:1:4250],lon[0:1:4499],time[0:1:10968],water_u[0:1:0][0:1:0][0:1:0][0:1:0],water_v[0:1:0][0:1:0][0:1:0][0:1:0]
     fn = ['https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z?lat[' ...
