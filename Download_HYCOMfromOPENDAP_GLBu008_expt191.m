@@ -1,11 +1,11 @@
 clear,clc
 latlim = [10 50];
 lonlim = [110 270];
-%% 1992/10/02 00:00:00 ~ 1995/07/31 21:00:00
+%% 1995/08/01 00:00:00 ~ 2012/12/31 21:00:00
 firstdate = datenum('2000010100','yyyymmddHH');
-fn_i = ['https://tds.hycom.org/thredds/dodsC/GLBu0.08/expt_19.0/3hrly?lat[0:1:2000],lon[0:1:4499],time[0:1:0]'];  
-first_date_download = datetime('1992/10/02 00:00:00','InputFormat','yyyy/MM/dd HH:mm:ss');
-end_date_download = datetime('1995/07/31 21:00:00','InputFormat','yyyy/MM/dd HH:mm:ss');
+fn_i = ['https://tds.hycom.org/thredds/dodsC/GLBu0.08/expt_19.1/3hrly?lat[0:1:2000],lon[0:1:4499],time[0:1:0]'];  
+first_date_download = datetime('1995/08/01 00:00:00','InputFormat','yyyy/MM/dd HH:mm:ss');
+end_date_download = datetime('2012/12/31 21:00:00','InputFormat','yyyy/MM/dd HH:mm:ss');
 %%
 loop_count = 0;
 while loop_count == 0
@@ -28,13 +28,13 @@ base_date_download = datetime(2000,01,01)+hours(time_i);
 first_index = hours(first_date_download-base_date_download)/3;
 
 % end_index = hours(end_date_download-base_date_download)/3;
-end_index = 6956;
+end_index = 50519;
 %%
 time_index = first_index;
 t = time_index; %起始時間index
 while t <= end_index
-    %https://tds.hycom.org/thredds/dodsC/GLBu0.08/expt_19.0/3hrly?depth[0:1:39],lat[0:1:2000],lon[0:1:4499],time[0:1:6956],water_u[0:1:0][0:1:0][0:1:0][0:1:0],water_v[0:1:0][0:1:0][0:1:0][0:1:0]
-    fn = ['https://tds.hycom.org/thredds/dodsC/GLBu0.08/expt_19.0/3hrly?lat[' ...
+    %https://tds.hycom.org/thredds/dodsC/GLBu0.08/expt_19.1/3hrly?depth[0:1:39],lat[0:1:2000],lon[0:1:4499],time[0:1:50519],water_u[0:1:0][0:1:0][0:1:0][0:1:0],water_v[0:1:0][0:1:0][0:1:0][0:1:0]
+    fn = ['https://tds.hycom.org/thredds/dodsC/GLBu0.08/expt_19.1/3hrly?lat[' ...
         num2str(latindex(1)) ':1:' num2str(latindex(end)) ...
         '],lon[' num2str(lonindex(1)) ':1:' num2str(lonindex(end)) ...
         '],time[' num2str(t) '],water_u[' num2str(t) ...
