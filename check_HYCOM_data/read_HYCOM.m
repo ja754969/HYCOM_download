@@ -35,8 +35,8 @@ for i = 1:index_num
     load([data_folder yyyy MM dd HH]);
     date_str(i,:) = [yyyy MM dd HH];
     disp([yyyy MM dd HH]);
-    u_i = permute(u,[2 1]);
-    v_i = permute(v,[2 1]);
+    u_i = double(permute(u,[2 1]));
+    v_i = double(permute(v,[2 1]));
     u_HYCOM = cat(3,u_HYCOM,u_i);
     v_HYCOM = cat(3,v_HYCOM,v_i);
     [XX_lon,YY_lat] = meshgrid(lon,lat);
