@@ -1,6 +1,8 @@
 clear,clc
 latlim = [10 50];
 lonlim = [110 270];
+this_folder = pwd;
+
 %% 1995/08/01 00:00:00 ~ 2012/12/31 21:00:00
 firstdate = datenum('2000010100','yyyymmddHH');
 fn_i = ['https://tds.hycom.org/thredds/dodsC/GLBu0.08/expt_19.1/3hrly?lat[0:1:2000],lon[0:1:4499],time[0:1:0]'];  
@@ -26,7 +28,10 @@ latindex = find(lat_i>=latlim(1)&lat_i<=latlim(end))-1;
 base_date_download = datetime(2000,01,01)+hours(time_i);
 
 first_index = hours(first_date_download-base_date_download)/3;
-
+while first_index < 0
+    first_date_download = first_date_download + hours(3);
+    first_index = hours(first_date_download-base_date_download)/3;
+end
 % end_index = hours(end_date_download-base_date_download)/3;
 end_index = 50519;
 %%
@@ -52,7 +57,7 @@ while t <= end_index
         time = ncread(fn,'time');
         date = datestr([firstdate + time/24],'yyyymmddHH')
         % 	save(['F:\1_Tec_all\DATA\HYCOM\HYCOM_GLBy_surface_uv\' date],'lat','lon','u','v')
-        saving_folder = './DATA/HYCOM/HYCOM_GLBu_surface_uv/';
+        saving_folder = 'E:/Data/HYCOM/HYCOM_GLBu_surface_uv/';
         mkdir(saving_folder)
         save([saving_folder date],'lat','lon','u','v')
         %     clear depth lat lon u v time date
@@ -65,3 +70,4 @@ while t <= end_index
     clear depth lat lon u v time date
     t = t + 1;
 end
+cd(this_folder)

@@ -26,14 +26,17 @@ latindex = find(lat_i>=latlim(1)&lat_i<=latlim(end))-1;
 base_date_download = datetime(2000,01,01)+hours(time_i);
 
 first_index = hours(first_date_download-base_date_download)/3;
-
+while first_index < 0
+    first_date_download = first_date_download + hours(3);
+    first_index = hours(first_date_download-base_date_download)/3;
+end
 % end_index = hours(end_date_download-base_date_download)/3;
 end_index = 6956;
 %%
 time_index = first_index;
 t = time_index; %起始時間index
 while t <= end_index
-    %https://tds.hycom.org/thredds/dodsC/GLBu0.08/expt_19.0/3hrly?depth[0:1:39],lat[0:1:2000],lon[0:1:4499],time[0:1:6956],water_u[0:1:0][0:1:0][0:1:0][0:1:0],water_v[0:1:0][0:1:0][0:1:0][0:1:0]
+    %https://tds.hycom.org/thredds/dodsC/GLBy0.08/expt_93.0/uv3z?lat[0:1:4250],lon[0:1:4499],time[0:1:10968],water_u[0:1:0][0:1:0][0:1:0][0:1:0],water_v[0:1:0][0:1:0][0:1:0][0:1:0]
     fn = ['https://tds.hycom.org/thredds/dodsC/GLBu0.08/expt_19.0/3hrly?lat[' ...
         num2str(latindex(1)) ':1:' num2str(latindex(end)) ...
         '],lon[' num2str(lonindex(1)) ':1:' num2str(lonindex(end)) ...
